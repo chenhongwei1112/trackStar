@@ -1,27 +1,33 @@
 <?php
 
 /**
- * This is the model class for table "tbl_project".
+ * This is the model class for table "tbl_issue".
  *
- * The followings are the available columns in table 'tbl_project':
+ * The followings are the available columns in table 'tbl_issue':
  * @property integer $id
  * @property string $name
  * @property string $description
+ * @property integer $project_id
+ * @property integer $type_id
+ * @property integer $status_id
+ * @property integer $owner_id
+ * @property integer $requester_id
  * @property string $create_time
  * @property integer $create_user_id
  * @property string $update_time
  * @property integer $update_user_id
  *
  * The followings are the available model relations:
- * @property Issue[] $issues
- * @property User[] $tblUsers
+ * @property User $requester
+ * @property User $owner
+ * @property Project $project
  */
-class Project extends CActiveRecord
+class Issue extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Project the static model class
+	 * @return Issue the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -33,7 +39,7 @@ class Project extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_project';
+		return 'tbl_issue';
 	}
 
 	/**
@@ -44,13 +50,13 @@ class Project extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description', 'required'),
-			array('create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
+			array('name', 'required'),
+			array('project_id, type_id, status_id, owner_id, requester_id, create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
-			array('create_time, update_time', 'safe'),
+			array('description, create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
+			array('id, name, description, project_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +68,9 @@ class Project extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
-			'tblUsers' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
+			'requester' => array(self::BELONGS_TO, 'User', 'requester_id'),
+			'owner' => array(self::BELONGS_TO, 'User', 'owner_id'),
+			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 		);
 	}
 
@@ -76,6 +83,11 @@ class Project extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'description' => 'Description',
+			'project_id' => 'Project',
+			'type_id' => 'Type',
+			'status_id' => 'Status',
+			'owner_id' => 'Owner',
+			'requester_id' => 'Requester',
 			'create_time' => 'Create Time',
 			'create_user_id' => 'Create User',
 			'update_time' => 'Update Time',
@@ -97,6 +109,11 @@ class Project extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('project_id',$this->project_id);
+		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('status_id',$this->status_id);
+		$criteria->compare('owner_id',$this->owner_id);
+		$criteria->compare('requester_id',$this->requester_id);
 		$criteria->compare('create_time',$this->create_time,true);
 		$criteria->compare('create_user_id',$this->create_user_id);
 		$criteria->compare('update_time',$this->update_time,true);
