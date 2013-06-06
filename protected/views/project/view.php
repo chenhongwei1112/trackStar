@@ -31,3 +31,10 @@ $this->menu=array(
 		'update_user_id',
 	),
 )); ?>
+
+<br />
+<h1>Project Issues</h1>
+<?php $this->widget('zii.widgets.CListView', array(
+  'dataProvider'=>$issueDataProvider,
+  'itemView'=>'/issue/_view',
+	)); ?>
