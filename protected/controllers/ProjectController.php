@@ -49,12 +49,28 @@ class ProjectController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+/**
+         * Displays a particular model.
+         * @param integer $id the ID of the model to be displayed
+         */
+  public function actionView($id)
+  {
+    $issueDataProvider=new CActiveDataProvider('Issue',
+	    array(
+		      'criteria'=>array(
+              'condition'=>'project_id=:projectId',
+              'params'=>array(':projectId'=>$this->loadModel($id)->id),
+		      ),
+		      'pagination'=>array(
+		          'pageSize'=>1,
+		      ),
+	     )
+    );
+    $this->render('view',array(
+            'model'=>$this->loadModel($id),
+            'issueDataProvider'=>$issueDataProvider,
+    ));
+  }
 
 	/**
 	 * Creates a new model.
