@@ -25,13 +25,20 @@ $this->menu=array(
 		'name',
 		'description',
 		'project_id',
-		'type_id',
-		'status_id',
-		'owner_id',
-		'requester_id',
-		'create_time',
-		'create_user_id',
-		'update_time',
-		'update_user_id',
-	),
+		array(
+			'name'=>'type_id',
+			'value'=>CHtml::encode($model->getTypeText()),
+		),
+		array(
+			'name'=>'status_id',
+			'value'=>CHtml::encode($model->getStatusText()),
+		),
+		array(        
+    'name'=>'owner_id',
+      'value'=>isset($model->owner)?CHtml::encode($model->owner->username):"unknown"
+    ),
+    array(        
+     'name'=>'requester_id',
+     'value'=>isset($model->requester)?CHtml::encode($model->requester->username):"unknown"      ),
+	  ),
 )); ?>
