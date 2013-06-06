@@ -27,7 +27,7 @@
 class Issue extends CActiveRecord
 {
 	
-	//用于下拉列表的相关操作
+	//用于修改type项下拉列表的相关操作
 	const TYPE_BUG=0;
 	const TYPE_FEATURE=1;
 	const TYPE_TASK=2;
@@ -38,6 +38,21 @@ class Issue extends CActiveRecord
 	    self::TYPE_BUG=>'Bug',
 	    self::TYPE_FEATURE=>'Feature',
 	    self::TYPE_TASK=>'Task',
+	  );
+	}
+	
+	
+	//用于修改status项下拉列表的相关操作
+	const STATUS_BUG=0;
+	const STATUS_FEATURE=1;
+	const STATUS_TASK=2;
+	
+	public function getStatusOptions()
+	{
+	  return array(
+	    self::STATUS_BUG=>'Not yet started',
+	    self::STATUS_FEATURE=>'Started',
+	    self::STATUS_TASK=>'Finished',
 	  );
 	}
 	
