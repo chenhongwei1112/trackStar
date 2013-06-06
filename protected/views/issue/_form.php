@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
-		<?php echo $form->textField($model,'type_id'); ?>
+		<?php echo $form->dropDownList($model,'type_id', $model->getTypeOptions()); ?>
 		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 
