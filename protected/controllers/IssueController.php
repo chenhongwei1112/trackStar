@@ -43,7 +43,7 @@ class IssueController extends Controller
 		else
 		  throw new CHttpException(403,'Must specify a project before performing this action.');
 		//complete the running of other filters and execute the requested action
-		  $filterChain->run();
+		$filterChain->run();
   }
 	/**
 	 * @return array action filters
