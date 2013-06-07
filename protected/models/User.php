@@ -26,6 +26,9 @@ class User extends TrackStarActiveRecord
 	 * @param string $className active record class name.
 	 * @return User the static model class
 	 */
+	 
+	public $password_repeat;
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -47,13 +50,14 @@ class User extends TrackStarActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, email, password', 'required'),
-			array('create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
+			array('username, email, password password_repeat', 'required'),
 			array('username, email, password', 'length', 'max'=>255),
-			array('last_login_time, create_time, update_time', 'safe'),
+			array('email, username', 'unique'),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, username, email, password, last_login_time, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
+			array('password', 'compare'),
 		);
 	}
 
@@ -114,4 +118,22 @@ class User extends TrackStarActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
+	protected function afterValidate()
+  {   
+    parent::afterValidate();
+  	if(!$this->hasErrors())
+      $this->password = $this->hashPassword($this->password);
+  }
+  
+  /**
+   * Generates the password hash.
+   * @param string password
+     * @return string hash
+   */
+  public function hashPassword($password)
+  {
+    return md5($password);
+  }
 }
