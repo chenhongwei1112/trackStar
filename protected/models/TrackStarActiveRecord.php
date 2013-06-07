@@ -2,8 +2,7 @@
 abstract class TrackStarActiveRecord extends CActiveRecord
 {
    /**
-   * Prepares create_user_id and update_user_id attributes before 
-saving.
+   * Prepares create_user_id and update_user_id attributes before saving.
    */
   
   protected function beforeSave()
@@ -23,8 +22,7 @@ saving.
   }
   
   /**
-   * Attaches the timestamp behavior to update our create and update 
-times
+   * Attaches the timestamp behavior to update our create and update times
    */
   public function behaviors() 
   {
