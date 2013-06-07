@@ -19,7 +19,7 @@
  * @property Issue[] $issues1
  * @property Project[] $tblProjects
  */
-class User extends CActiveRecord
+class User extends TrackStarActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

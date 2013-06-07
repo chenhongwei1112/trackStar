@@ -24,7 +24,7 @@
  */
  
 
-class Issue extends CActiveRecord
+class Issue extends TrackStarActiveRecord
 {
 	
 	//用于修改type项下拉列表的相关操作
