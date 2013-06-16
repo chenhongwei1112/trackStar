@@ -19,31 +19,6 @@ class ProjectController extends Controller
 		);
 	}
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
 
 	/**
 	 * Displays a particular model.
@@ -191,8 +166,7 @@ class ProjectController extends Controller
 	  $project = $this->loadModel($id);
 	  if(!Yii::app()->user->checkAccess('createUser',array('project'=>$project)))
 	  {
-		  throw new CHttpException(403,'You are not authorized to perform  
-		  this action.');
+		  throw new CHttpException(403,'You are not authorized to perform this action.');
 		}
 		$form=new ProjectUserForm; 
 		// collect user input data
@@ -205,8 +179,7 @@ class ProjectController extends Controller
 	    {
 	      if($form->assign())
 	      {
-	      	Yii::app()->user->setFlash('success',$form->username . "  
-		      has been added to the project." ); 
+	      	Yii::app()->user->setFlash('success',$form->username . "has been added to the project." ); 
 		      //reset the form for another user to be associated if desired
 		      $form->unsetAttributes();
 		      $form->clearErrors();
