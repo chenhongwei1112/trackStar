@@ -57,16 +57,17 @@ class Comment extends TrackStarActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'updateUser' => array(self::BELONGS_TO, 'User', 'update_user_id'),
-			'issue' => array(self::BELONGS_TO, 'Issue', 'issue_id'),
-			'createUser' => array(self::BELONGS_TO, 'User', 'create_user_id'),
-		);
-	}
+ public function relations()
+  {
+    // NOTE: you may need to adjust the relation name and the related
+    // class name for the relations automatically generated below.
+    return array(
+      'updateUser' => array(self::BELONGS_TO, 'User', 'update_user_id'),
+      'issue' => array(self::BELONGS_TO, 'Issue', 'issue_id'),
+      'author' => array(self::BELONGS_TO, 'User', 'create_user_id'),
+    );
+  }
+
 
 	/**
 	 * @return array customized attribute labels (name=>label)
