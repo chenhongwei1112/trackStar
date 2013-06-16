@@ -17,7 +17,7 @@
  * @property Issue $issue
  * @property User $createUser
  */
-class Comment extends CActiveRecord
+class Comment extends TrackStarActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
