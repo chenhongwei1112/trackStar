@@ -191,13 +191,17 @@ class IssueController extends Controller
 	 * @return Issue the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
-	{
-		$model=Issue::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
+	   public function loadModel($id, $withComments=false)
+	  {
+	    if($withComments)
+	      $model = Issue::model()->with(array('comments'=>array('with'=>'author')))->findByPk($id);
+	    else
+	      $model=Issue::model()->findByPk($id);
+	    if($model===null)
+	      throw new CHttpException(404,'The requested page does not exist.');
+	    return $model;
+	  }
+
 
 	/**
 	 * Performs the AJAX validation.
@@ -218,7 +222,7 @@ class IssueController extends Controller
 	//´«µİ²ÎÊı
 	public function actionView($id)
 	{
-	    $issue=$this->loadModel($id);
+	    $issue=$this->loadModel($id, true);
 	    $comment=$this->createComment($issue);
 	    $this->render('view',array(
 	      'model'=>$issue,
