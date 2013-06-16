@@ -108,4 +108,14 @@ class Comment extends TrackStarActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public function recent($limit=5)
+{
+  $this->getDbCriteria()->mergeWith(
+    array(         
+    'order'=>'t.create_time DESC',         
+      'limit'=>$limit,     
+    )
+  );     
+  return $this;
+}
 }
