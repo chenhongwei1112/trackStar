@@ -714,3 +714,21 @@ Stack trace:
 REQUEST_URI=/index.php?r=issue/view&id=2
 HTTP_REFERER=http://127.0.0.32/index.php?r=project/view&id=1
 ---
+2013/06/16 15:06:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Must specify a project before performing this action.' in E:\PHPProject\trackStar\protected\controllers\IssueController.php:44
+Stack trace:
+#0 E:\PHPProject\yii\framework\web\filters\CInlineFilter.php(58): IssueController->filterProjectContext(Object(CFilterChain))
+#1 E:\PHPProject\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 E:\PHPProject\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 E:\PHPProject\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 E:\PHPProject\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 E:\PHPProject\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 E:\PHPProject\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 E:\PHPProject\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\PHPProject\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#9 E:\PHPProject\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('issue/index')
+#10 E:\PHPProject\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 E:\PHPProject\trackStar\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=issue/index
+HTTP_REFERER=http://127.0.0.32/index.php?r=issue/view&id=2
+---
