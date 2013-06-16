@@ -147,13 +147,13 @@ class Project extends TrackStarActiveRecord
 	    // validate user input  
 	    if($form->validate())  
 	    {
-	        if($form->assign())
+	      if($form->assign())
 	      {
-	       Yii::app()->user->setFlash('success',$form->username . "  
-	       has been added to the project." ); 
-	       //reset the form for another user to be associated if desired
-	      $form->unsetAttributes();
-	      $form->clearErrors();
+	      	Yii::app()->user->setFlash('success',$form->username . "  
+		      has been added to the project." ); 
+		      //reset the form for another user to be associated if desired
+		      $form->unsetAttributes();
+		      $form->clearErrors();
 	      }
 	    }
 	  }
