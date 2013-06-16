@@ -12,12 +12,9 @@
 	    public function init()
 	        {
 	          if(null !== $this->projectId)
-	        $this->_comments = Comment::model()->with(array('issue'=>a
-	rray('condition'=>'project_id='.$this->projectId)))->recent($this-
-	>displayLimit)->findAll();
+	        $this->_comments = Comment::model()->with(array('issue'=>array('condition'=>'project_id='.$this->projectId)))->recent($this->displayLimit)->findAll();
 	      else
-	        $this->_comments = Comment::model()->recent($this-
-	>displayLimit)->findAll();
+	        $this->_comments = Comment::model()->recent($this->displayLimit)->findAll();
 	        }  
 	        public function getData()
 	        {
