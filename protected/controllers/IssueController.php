@@ -213,12 +213,7 @@ class IssueController extends Controller
 	}
 	
 	
-		//添加评论
-	public function addComment($comment)
-	{
-	  $comment->issue_id=$this->id;
-	  return $comment->save();
-	}
+
 	
 	//传递参数
 	public function actionView($id)

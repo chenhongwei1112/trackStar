@@ -195,5 +195,13 @@ public function relations()
     $typeOptions=$this->typeOptions;
     return isset($typeOptions[$this->type_id]) ? $typeOptions[$this->type_id] : "unknown status 111 ({$this->type_id})";
   }
+  
+  		//Ìí¼ÓÆÀÂÛ
+	public function addComment($comment)
+	{
+	  $comment->issue_id=$this->id;
+	  return $comment->save();
+	}
+	
 
 }
