@@ -116,16 +116,17 @@ class Issue extends TrackStarActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'requester' => array(self::BELONGS_TO, 'User', 'requester_id'),
-			'owner' => array(self::BELONGS_TO, 'User', 'owner_id'),
-			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
-		);
-	}
+public function relations()
+{
+  return array(
+    'requester' => array(self::BELONGS_TO, 'User', 'requester_id'),
+    'owner' => array(self::BELONGS_TO, 'User', 'owner_id'),
+    'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
+    'comments' => array(self::HAS_MANY, 'Comment', 'issue_id'),
+    'commentCount' => array(self::STAT, 'Comment', 'issue_id'),
+  );
+}
+
 
 	/**
 	 * @return array customized attribute labels (name=>label)
