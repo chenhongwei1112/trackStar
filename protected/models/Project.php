@@ -129,4 +129,25 @@ class Project extends TrackStarActiveRecord
 		$command->bindValue(":userId", $user->id, PDO::PARAM_INT);
 		return $command->execute()==1;
 	}
+	
+	public function assignUser($userId, $role)
+	{
+		$command = Yii::app()->db->createCommand();
+		$command->insert(
+			'tbl_project_user_assignment', 
+			array(
+				'role'=>$role,
+				'user_id'=>$userId,
+				'project_id'=>$this->id,
+			)
+		);
+	}
+	public function removeUser($userId)
+	{
+		$command = Yii::app()->db->createCommand();
+		$command->delete(
+		'tbl_project_user_assignment', 
+		'user_id=:userId AND project_id=:projectId', 
+		array(':userId'=>$userId,':projectId'=>$this->id));
+	}
 }
