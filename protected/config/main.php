@@ -10,7 +10,7 @@ return array(
 	'name'=>'TrackStar',
 	'id'=>'TrackStar',
 	
-	'homeUrl'=>'/trackstar/project',
+	'homeUrl'=>'/index.php',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
