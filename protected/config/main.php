@@ -9,6 +9,8 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'TrackStar',
 	'id'=>'TrackStar',
+	'theme'=>'abound',
+	
 	
 	'homeUrl'=>'/index.php',
 
